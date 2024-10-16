@@ -1,0 +1,62 @@
+;
+; HiderDriver.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System ; TODO: specify appropriate Class
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider    = %ManufacturerName%
+CatalogFile = HiderDriver.cat
+DriverVer = 10/09/2024,21.10.42.534
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+HiderDriver.sys = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64.10.0...16299 ; %13% support introduced in build 16299
+
+[Standard.NTamd64.10.0...16299]
+%HiderDriver.DeviceDesc% = HiderDriver_Device, Root\HiderDriver ; TODO: edit hw-id
+
+[HiderDriver_Device.NT]
+CopyFiles = File_Copy
+
+[File_Copy]
+HiderDriver.sys
+
+;-------------- Service installation
+[HiderDriver_Device.NT.Services]
+AddService = HiderDriver,%SPSVCINST_ASSOCSERVICE%, HiderDriver_Service_Inst
+
+; -------------- HiderDriver driver install sections
+[HiderDriver_Service_Inst]
+DisplayName    = %HiderDriver.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\HiderDriver.sys
+
+[HiderDriver_Device.NT.Wdf]
+KmdfService = HiderDriver, HiderDriver_wdfsect
+
+[HiderDriver_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE = 0x00000002
+ManufacturerName = "<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "HiderDriver Installation Disk"
+HiderDriver.DeviceDesc = "HiderDriver Device"
+HiderDriver.SVCDESC = "HiderDriver Service"
