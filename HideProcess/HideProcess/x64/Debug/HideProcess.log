@@ -1,0 +1,24 @@
+﻿  Building 'HideProcess' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Debug\HideProcess.inf
+  Stamping [Version] section with DriverVer=10/16/2024,22.6.21.510
+  HideProcess.vcxproj -> V:\KernelLand\DKOM\HideProcess\x64\Debug\HideProcess.sys
+  Done Adding Additional Store
+  Successfully signed: V:\KernelLand\DKOM\HideProcess\x64\Debug\HideProcess.sys
+  
+  Driver is 'Universal'.
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  V:\KernelLand\DKOM\HideProcess\x64\Debug\HideProcess\hideprocess.cat
+  Done Adding Additional Store
+  Successfully signed: V:\KernelLand\DKOM\HideProcess\x64\Debug\HideProcess\hideprocess.cat
+  
+  "pwsh.exe" no se reconoce como un comando interno o externo,
+  programa o archivo por lotes ejecutable.
